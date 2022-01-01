@@ -1,0 +1,170 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct node
+{
+    int d;
+    struct node *next;
+    struct node *prev;
+}*head,*tail;
+typedef struct node node;
+void first()
+{
+    int n;
+    printf("enter element: ");
+    scanf("%d",&n);
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));  
+   if(ptr == NULL)  
+   {  
+       printf("\nOVERFLOW");  
+   }  
+   else  
+   {  
+      
+      
+   if(head==NULL)  
+   {  
+       ptr->next = NULL;  
+       ptr->prev=NULL;  
+       ptr->d=n;  
+       head=ptr;  
+   }  
+   else   
+   {  
+       ptr->d=n;  
+       ptr->prev=NULL;  
+       ptr->next = head;  
+       head->prev=ptr;  
+       head=ptr;  
+   }  
+}  
+}
+void end()
+{
+    int n;
+    struct node *ptr = (struct node *) malloc(sizeof(struct node));  
+   struct node *temp;  
+   printf("enter element: ");
+   scanf("%d",&n);
+   if(ptr == NULL)  
+   {  
+       printf("\nOVERFLOW");  
+          
+   }  
+   else  
+   {  
+       
+        ptr->d=n;  
+       if(head == NULL)  
+       {  
+           ptr->next = NULL;  
+           ptr->prev = NULL;  
+           head = ptr;  
+       }  
+       else  
+       {  
+          temp = head;  
+          while(temp->next!=NULL)  
+          {  
+              temp = temp->next;  
+          }  
+          temp->next = ptr;  
+          ptr ->prev=temp;  
+          ptr->next = NULL;  
+       }  
+printf("\nNode Inserted\n");  
+             
+   }  
+}
+void ran()
+{
+    
+    
+}
+void create()
+{
+    node *dd,*ii;
+    int n,ele;
+    printf("no.of nodes: ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        printf("element(%d): ",i+1);
+        scanf("%d",&ele);
+        if(i==0)
+        {
+            dd=(node *)malloc(sizeof(node));
+            dd->d=ele;
+            dd->next=NULL;
+            head=dd;
+            ii=head;
+        }
+        else
+        {
+            dd=(node *)malloc(sizeof(node));
+            dd->d=ele;
+            dd->next=NULL;
+            ii->next=dd;
+            ii=ii->next;
+        }
+    }
+}
+void disp()
+{
+    node *dd;
+    dd=head;
+    if(dd!=NULL)
+    {
+        while(dd!=NULL)
+        {
+            printf("%d->",dd->d);
+            dd=dd->next;
+        }
+    }
+    else
+    {
+        printf("empty");
+    }
+}
+int main()
+{
+    int ch;char user[100];
+while(1)
+{
+printf("---------------------------------------------------------\n");
+printf("\t\t C Single Linked list\n");
+printf("---------------------------------------------------------\n");
+printf("\t1. Create\t2. Display\n\t3. first\t4. last\n\n5. random");
+printf("\t\tEnter your choice: ");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+create();
+break;
+case 2:
+disp();
+break;
+case 3:
+first();
+break;
+case 4:
+end();
+break;
+case 5:
+ran();
+break;
+default:
+printf("Invalid Choice\nPlease enter a valid choice between 1-4\n");
+break;
+}
+printf("Do you want to continue?\nPress yes or no: ");
+scanf("%s",user);
+if(strcmp(user,"YES")==0||strcmp(user,"yes")==0||strcmp(user,"Yes")==0)
+continue;
+else
+exit(0);
+    
+}
+return 0;
+}
